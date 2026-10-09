@@ -2,7 +2,7 @@
 
 > ~~Yet Another Expense Tracker~~
 > **YAET Ain't Excel, Thanks**
->
+> *Pronounced "yeet". Or "yet". I don't judge.*
 > A minimal, opinionated expense tracker focused on what actually matters.
 
 ![status](https://img.shields.io/badge/status-active-success)
