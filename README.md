@@ -93,22 +93,6 @@ This tracker embraces:
 
 ---
 
-## 🚀 Getting Started
-
-```bash
-# Clone the repo
-git clone https://github.com/<your-username>/yaet-expense-tracker.git
-cd yaet-expense-tracker
-
-# Install dependencies
-<your-install-command>
-
-# Run the app
-<your-run-command>
-```
-
----
-
 ## 📄 License
 
 MIT
