@@ -1,0 +1,1 @@
+ALTER TABLE "expenses" ADD COLUMN "raw" boolean DEFAULT true NOT NULL;

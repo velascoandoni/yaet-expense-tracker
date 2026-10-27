@@ -1,0 +1,69 @@
+/* * {
+    outline: yellowgreen solid 1px;
+} */
+ 
+html{
+    font-size: 10px;
+}
+#root{
+    width: 100%;
+}
+
+
+
+.ant-table-row.ant-table-row-level-0.missing {
+    background-color: #ffa39e;
+}
+.ant-table-row.ant-table-row-level-0.disabled-row {
+    background-color: #0000000d;
+}
+
+
+
+.full-height-table {
+  /* make the Ant Table root a column flex so we can target internals */
+  height: 100%;
+}
+
+/* container + content -> take available space */
+.full-height-table .ant-table {
+    height: 100%;
+}
+.full-height-table .ant-table-container,
+.full-height-table .ant-table-content {
+    height: 100%;
+  flex-direction: column;
+}
+
+/* make the table body the scrolling area */
+.full-height-table .ant-table-body {
+    height: 100%;
+  overflow: auto;  /* THIS makes the rows scroll */
+}
+
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox, Safari 18.2+, Chromium 121+ */
+}
+.no-scrollbar::-webkit-scrollbar { 
+    display: none;  /* Older Safari and Chromium */
+}
+
+
+
+.text{
+    font-size: 1rem;
+}
+.title{
+    font-size: 2rem;
+}
+.clickable-text{
+    cursor: pointer;
+
+}
+
+.clickable-text:hover{
+    text-decoration: underline;
+       
+}

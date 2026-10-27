@@ -1,0 +1,4 @@
+.customCard.noPadding .ant-card-body{
+    padding:0px !important;
+}
+

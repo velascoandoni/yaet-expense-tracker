@@ -1,0 +1,2 @@
+ALTER TABLE "expenses" ADD COLUMN "split_from" integer;--> statement-breakpoint
+ALTER TABLE "expenses" ADD CONSTRAINT "expenses_split_from_expenses_expense_id_fk" FOREIGN KEY ("split_from") REFERENCES "public"."expenses"("expense_id") ON DELETE no action ON UPDATE no action;

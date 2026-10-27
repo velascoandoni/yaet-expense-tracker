@@ -1,0 +1,34 @@
+{
+  "name": "gusessle",
+  "module": "server/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun --env-file .env.production server/index.js ",
+    "dev": "bun --watch server/index.ts",
+    "generate": "bun drizzle-kit generate",
+    "migrate": "bun drizzle-kit migrate",
+    "frontend": "cd frontend && bunx --bun vite"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pg": "^8.11.11",
+    "drizzle-kit": "^0.30.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.4.3",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "drizzle-orm": "^0.40.0",
+    "drizzle-zod": "^0.7.1",
+    "hono": "^4.7.4",
+    "oslo": "^1.2.1",
+    "pg": "^8.14.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "stoker": "^1.4.2",
+    "zod": "^3.24.2"
+  }
+}

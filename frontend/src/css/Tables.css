@@ -1,0 +1,175 @@
+.custom-table-container.sticky-headers{
+  overflow: auto;
+}
+
+.custom-table-container.sticky-headers thead{
+    position: sticky;
+    top:0;
+    z-index: 9;
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Base table container */
+.darkTable .ant-table,
+.darkTable .ant-table-container {
+  background: transparent;
+  color: #e6e6e6;
+}
+
+/* Header */
+.darkTable .ant-table-thead > tr > th {
+  background: var(--card-accent-primary);
+  color: #cfd3dc;
+  border-bottom: 1px solid #23283a;
+  font-weight: 600;
+}
+
+/* Header hover / active */
+.darkTable .ant-table-thead > tr > th:hover {
+  background: transparent;
+}
+
+/* Body cells */
+.darkTable .ant-table-tbody > tr > td {
+  background: transparent;
+  border-bottom: 1px solid var(--card-color-primary);
+  color: #e6e6e6;
+}
+
+.darkTable tfoot.ant-table-summary
+{
+  background: transparent;
+}
+.darkTable .ant-table-tbody > tr.ant-table-row-selected > td.ant-table-cell {
+  background: var(--card-accent-primary) !important;
+  border-bottom: 1px solid var(--card-accent-secondary);
+  color: #e6e6e6;
+}
+
+/* Row hover (no background, subtle emphasis via border) */
+.darkTable .ant-table-tbody > tr:hover > td {
+  background: transparent;
+  border-bottom-color: var(--card-accent-primary);
+}
+
+/* Selected rows */
+.darkTable .ant-table-tbody > tr.ant-table-row-selected > td {
+  background: transparent;
+  outline: 1px solid var(--card-accent-primary);
+  outline-offset: -1px;
+}
+
+/* Zebra striping disabled explicitly */
+.darkTable .ant-table-tbody > tr:nth-child(even) > td {
+  background: transparent;
+}
+
+/* Empty state */
+.darkTable .ant-table-empty .ant-table-tbody > tr > td {
+  background: transparent;
+  color: #8c8c8c;
+}
+
+/* Bordered tables */
+.darkTable .ant-table-bordered .ant-table-container {
+  background: transparent;
+  border: 1px solid #1f2433;
+}
+
+.darkTable .ant-table-bordered th,
+.darkTable .ant-table-bordered td {
+  background: transparent;
+  border-right: 1px solid #1f2433;
+}
+
+/* Pagination */
+.darkTable .ant-pagination,
+.darkTable .ant-pagination-item,
+.darkTable .ant-pagination-item a {
+  background: transparent;
+  color: #cfd3dc;
+  border-color: #1f2433;
+}
+
+.darkTable .ant-pagination-item-active {
+  background: transparent;
+  border-color: #2b5cff;
+}
+
+.darkTable .ant-pagination-item-active a {
+  color: #2b5cff;
+}
+
+/* Sort icons */
+.darkTable .ant-table-column-sorter {
+  background: transparent;
+  color: #8fa4ff;
+}
+
+.darkTable
+  .ant-table-column-sorter-up.active,
+.darkTable
+  .ant-table-column-sorter-down.active {
+  color: #2b5cff;
+}
+
+/* Filter dropdown */
+.darkTable .ant-table-filter-dropdown {
+  background: transparent;
+  border: 1px solid #1f2433;
+}
+
+.darkTable .ant-table-filter-dropdown * {
+  background: transparent;
+  color: #cfd3dc;
+}
+
+/* Scrollbar (WebKit) */
+.darkTable .ant-table-body::-webkit-scrollbar,
+.darkTable .ant-table-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.darkTable .ant-table-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+/* Loading / placeholder */
+.darkTable .ant-table-placeholder {
+  background: transparent;
+}
+
+/* Expand icon */
+.darkTable .ant-table-row-expand-icon {
+  background: transparent;
+  border-color: #2a2f45;
+  color: #cfd3dc;
+}
+
+
+.darkTable .ant-table-tbody > tr.ant-table-row:hover > td,
+.darkTable .ant-table-tbody > tr:hover > td,
+.darkTable .ant-table-tbody > tr > td.ant-table-cell-row-hover {
+  background-color: transparent !important;
+  background: transparent !important;
+}

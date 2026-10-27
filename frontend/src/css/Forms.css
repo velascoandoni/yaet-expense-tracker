@@ -1,0 +1,27 @@
+form.whiteForm .ant-col.ant-form-item-label label{
+    color: white;
+    font-size: 2rem;
+}
+
+
+
+.ant-select.ant-select-outlined.whiteInput .ant-select-selector,
+form.whiteForm input,
+form.whiteForm .ant-input-disabled, 
+form.whiteForm .ant-picker-outlined{
+    background: transparent !important;
+    color:white;
+    border-color: var(--card-accent-primary) !important;
+    
+}
+.ant-select.ant-select-outlined.whiteInput .ant-select-selector .ant-select-selection-item{
+    display: inline-flex;
+}
+
+.whiteInput:hover,
+form.whiteForm .ant-input-disabled:hover, 
+form.whiteForm input:hover,
+form.whiteForm .ant-picker-outlined:hover{
+    background: transparent !important;
+    border-color: white !important;
+}

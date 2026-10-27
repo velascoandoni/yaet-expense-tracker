@@ -1,0 +1,1 @@
+ALTER TABLE "expenses" ADD COLUMN "split" boolean DEFAULT true NOT NULL;

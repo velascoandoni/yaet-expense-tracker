@@ -1,0 +1,1 @@
+ALTER TABLE "expenses" ALTER COLUMN "final_balance" DROP NOT NULL;
