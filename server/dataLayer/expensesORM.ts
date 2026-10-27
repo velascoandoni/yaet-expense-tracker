@@ -59,46 +59,50 @@ export async function removeMarkExpensesAsMerged(unmerging_expense_ids: number[]
     return updatedExpenses
 }
 export async function normalizeTransactionsFrom(expense: Expense) {
-    let previousSafeExpenseDate = (await db.select({ date: expenses.date }).from(expenses)
-        .where(
-            and(
-                eq(expenses.raw, true),
-                eq(expenses.user_id, expense?.user_id),
-                lte(expenses.date, expense?.date),
-            )
-        )
+    const safeDateRow = (await db.select({ date: expenses.date }).from(expenses)
+        .where(and(
+            eq(expenses.raw, true),
+            eq(expenses.user_id, expense.user_id),
+            lte(expenses.date, expense.date),
+        ))
         .groupBy(expenses.date)
         .having(sql`COUNT(*) = 1`)
-        .orderBy(expenses.date)
-        .limit(1))?.[0]?.date
-    if (!previousSafeExpenseDate) return;
-    let previousSafeExpense = (await db.select().from(expenses)
-        .where(
-            and(
-                eq(expenses.user_id, expense?.user_id),
-                eq(expenses.date, previousSafeExpenseDate),
-            )
-        )
-        .orderBy(expenses.date)
-        .limit(1))[0]
-    let what = await db.execute(sql`
-  WITH ordered AS (
-    SELECT
-      expense_id,
-      SUM(amount::numeric) OVER (
-        ORDER BY date, name, amount, repetition
-        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-      ) + ${previousSafeExpense.final_balance} AS new_balance
-    FROM ${expenses}
-    WHERE date > ${previousSafeExpense.date}
-      AND user_id = ${previousSafeExpense.user_id}
-      AND raw = true
-  )
-  UPDATE ${expenses} AS e
-  SET final_balance = o.new_balance
-  FROM ordered o
-  WHERE e.expense_id = o.expense_id;
-`);
+        .orderBy(desc(expenses.date))   // latest safe date, not earliest
+        .limit(1))[0];
+    if (!safeDateRow) return;
+
+    const safeExpense = (await db.select().from(expenses)
+        .where(and(
+            eq(expenses.user_id, expense.user_id),
+            eq(expenses.date, safeDateRow.date),
+            eq(expenses.raw, true),     // match the "safe" query
+        ))
+        .limit(1))[0];
+    if (!safeExpense) return;
+
+    // No stored balance yet: start counting from this expense itself
+    const hasBalance = safeExpense.final_balance !== null;
+    const baseBalance = hasBalance ? safeExpense.final_balance : 0;
+    const op = hasBalance ? sql`>` : sql`>=`;
+
+    await db.execute(sql`
+      WITH ordered AS (
+        SELECT
+          expense_id,
+          SUM(amount::numeric) OVER (
+            ORDER BY date, name, amount, repetition
+            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+          ) + ${baseBalance}::numeric AS new_balance
+        FROM ${expenses}
+        WHERE date ${op} ${safeExpense.date}
+          AND user_id = ${safeExpense.user_id}
+          AND raw = true
+      )
+      UPDATE ${expenses} AS e
+      SET final_balance = o.new_balance
+      FROM ordered o
+      WHERE e.expense_id = o.expense_id
+    `);
 }
 
 export async function addExpenses(Expenses: CreateExpense[]): Promise<Expense | String[]> {

@@ -27,8 +27,6 @@ export const expensesRouter = new Hono()
         const validatedExpenses = await c.req.valid("json");
 
         // Handle multiple expenses
-        
-
         return await defaultHandler(c, (params: any, body: any) => addExpenses(validatedExpenses))
 
     })
