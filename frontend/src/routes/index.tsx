@@ -97,7 +97,7 @@ function Main({
 
   const gap = "10px"
 
-  return <ContentCard title={<Row style={{ width: "100%" }}><Title style={{ fontSize: "40px",color:"white" }}>
+  return <ContentCard title={<Row style={{ width: "100%" }}><Title style={{ fontSize: "40px",color:"white",margin:0 }}>
     Vista general
     <FontAwesomeIcon style={{ color: isLast ? "gray" : undefined }} icon={faChevronLeft} onClick={() => prev()} />
     <div style={{ minWidth: "300px", display: "inline-block", textAlign: "center" }}>{selectedMonthData.title}</div>
@@ -156,63 +156,5 @@ function Main({
         </CustomCard>
       </div>
     </div>
-
-
-
-
-
   </ContentCard>
-  return <div>
-    <div style={{ flexGrow: 3 }}>
-      <MainTable
-        mergingExpenses={mergingExpenses}
-        expenses={[...expenses || []]?.reverse()}
-        showBalance={query?.raw}
-        setMerginExpenses={setMerginExpenses}
-        editable={true}
-        setQuery={setQuery}
-        actions={(record) => [
-          {
-            name: "Split",
-            icon: faCodeFork,
-            onClick: () => setExpenseToSplit(record)
-          },
-          !record.raw && {
-            name: "Delete",
-            icon: faTrash,
-            onClick: () => deleteExpense(record)
-          }
-        ].filter(Boolean)}
-        selectable={true}
-        maxHeight={"80vh"}
-      />
-    </div>
-
-    <div style={{ flexGrow: 1, display: "flex", flexWrap: "nowrap", gap: "30px" }}>
-      <CustomCard title={"Filters"} style={{ flexGrow: 10, alignContent: "space-between", display: "flex", flexDirection: "column" }}>
-        <Query query={query} setQuery={setQuery} expenses={expenses} allExpenses={allExpenses} />
-        <Stats expenses={expenses} />
-
-      </CustomCard>
-    </div>
-    <div style={{ flexGrow: 2 }}>
-      <MainTable
-        mergingExpenses={[]}
-        expenses={[]}
-        setMerginExpenses={setMerginExpenses}
-
-        maxHeight={"0vh"}
-        style={{ height: 0 }}
-      />
-      <SplitExpense expenseToSplit={expesenToSplit} resetExpenseToSplit={() => setExpenseToSplit(undefined)} />
-      <AddNewExpense mergingExpenses={mergingExpenses} resetExpensesToMerge={() => setMerginExpenses(undefined)} />
-
-      <AddMultipleExpenses />
-    </div>
-
-
-
-
-
-  </div>
 }

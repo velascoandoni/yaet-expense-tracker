@@ -9,14 +9,14 @@ export default function EmojiChooser({
     emoji
 }:EmojiChooserProps){
     return <Popover styles={{ body: { padding: 0, margin: 0, background: "transparent" } }} content={<EmojiPicker theme={Theme.DARK} width={"100%"} emojiStyle={EmojiStyle.APPLE} onEmojiClick={newEmoji =>selectEmoji(newEmoji.unified)} previewConfig={{ showPreview: false }} />} style={{ cursor: "pointer" }} title={""} trigger="click">
-                        <div style={{ cursor: "pointer",minWidth:"20px",minHeight:"20px"}}>
-                            {typeof emoji=="string" ? <Emoji
+                        <div style={{ cursor: "pointer",minWidth:"20px",minHeight:"20px",float:"left"}}>
+                            {typeof emoji=="string" ?  <Emoji
                                 emojiStyle={EmojiStyle.APPLE}
                                 unified={emoji}
                                 size={30}
     
     
-                            />:"X"}
+                            />:"Select"}
                         </div>
                     </Popover>
 }

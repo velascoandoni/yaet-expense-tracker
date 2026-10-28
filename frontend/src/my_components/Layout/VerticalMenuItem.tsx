@@ -9,19 +9,22 @@ type VerticalMenuItemProps={
     title:string,
     icon:IconProp,
     open:boolean,
-    isSelected:boolean
+    isSelected:boolean,
+    stopPropagation:boolean,
 }
-
 export default function VerticalMenuItem({
     tabKey,
     title,
     icon,
     open,
-    isSelected
+    isSelected,
+    stopPropagation
 }:VerticalMenuItemProps) {
 const { Text } = Typography
     const navigate = useNavigate()
     function ontabSelected(e) {
+        if(stopPropagation)
+            e.stopPropagation()
         navigate({ to: tabKey })
 
     }

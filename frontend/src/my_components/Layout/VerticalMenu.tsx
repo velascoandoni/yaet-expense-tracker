@@ -9,11 +9,13 @@ import '../../css/verticalMenu.css'
 import { classNameMerger, CLASSNAMES } from "../../utils/CSS_CONSTS";
 import VerticalMenuItem from "./VerticalMenuItem";
 type VerticalMenuProps = {
-    user:any
+    user: any
 }
 export default function VerticalMenu({
     user
-}:VerticalMenuProps) {
+}: VerticalMenuProps) {
+    const navigate = useNavigate()
+
     const { Text } = Typography
 
     const [open, setOpen] = useState(false);
@@ -33,11 +35,11 @@ export default function VerticalMenu({
             title: "Expense types",
             icon: faCogs
         },
-/*         {
-            key: "/stats",
-            title: "Stats",
-            icon: faPieChart
-        }, */
+        /*         {
+                    key: "/stats",
+                    title: "Stats",
+                    icon: faPieChart
+                }, */
 
 
     ]
@@ -48,7 +50,8 @@ export default function VerticalMenu({
     }
     const location = useLocation()
     return <div className={`vertical-menu ${open ? "open" : ""}`}
-        onClick={() => toggleOpen()}>
+    //onClick={() => toggleOpen()}
+    >
 
         <CustomCard noPadding={true} className={"menu-card"} bodyStyle={{ height: "100%", overflow: "hidden" }} style={{ height: "100%", overflow: "hidden" }} children={<div style={{
             display: "inline-flex",
@@ -56,6 +59,7 @@ export default function VerticalMenu({
             height: "100%",
 
         }}
+            onClick={toggleOpen}
         >
 
 
@@ -64,14 +68,18 @@ export default function VerticalMenu({
                 flexDirection: "column",
                 height: "100%",
                 alignContent: "center",
-            }}>
+            }}
+
+            >
                 <div className="header" style={{
                     display: "flex", width: "100%", whiteSpace: "nowrap", justifyContent: "center",
                     padding: "20px 30px"
 
                 }}>
 
-                    <div>
+                    <div
+                        onClick={e => e.stopPropagation()}
+                    >
 
                         <FontAwesomeIcon icon={faShekelSign} style={{ width: "2rem", height: "auto" }} />
                         &nbsp;
@@ -84,7 +92,7 @@ export default function VerticalMenu({
                 <div style={{ padding: "10px 0px", height: "100%", gap: "5px", display: "flex", flexDirection: "column" }}>
                     {tabs.map(t => {
 
-                        return <VerticalMenuItem icon={t.icon} title={t.title} open={open} isSelected={location.pathname == t.key} tabKey={t.key} />
+                        return <VerticalMenuItem stopPropagation icon={t.icon} title={t.title} open={open} isSelected={location.pathname == t.key} tabKey={t.key} />
                     })}
                 </div>
 
@@ -93,10 +101,12 @@ export default function VerticalMenu({
                     display: "flex", width: "100%", whiteSpace: "nowrap", justifyContent: "center",
                     padding: "10px 0px"
 
-                }} onClick={e => e.stopPropagation()}>
+                }}
+                    onClick={e => e.stopPropagation()}
+                >
                     <Tooltip title={<>
-                        <Button>Log out</Button>
-                        </>}>
+                        <Button onClick={() => navigate({ to: "/logout" })}>Log out</Button>
+                    </>}>
 
                         <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
 
