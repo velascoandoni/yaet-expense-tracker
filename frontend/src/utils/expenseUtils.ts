@@ -2,7 +2,6 @@ import Decimal from "decimal.js"
 import type { Expense } from "../../../types/expenses"
 import { ExpenseType } from "../../../types/types"
 import dayjs from "dayjs"
-import { cosineDistance } from "drizzle-orm"
 
 
 
@@ -52,7 +51,7 @@ export function isSaving(e: Expense) {
 }
 
 export function isPayDay(e: Expense) {
-    return e.type_id == 10 || e.name?.includes("NÓMINA") || e.name?.includes("NOMINA")
+    return e.type_id == 10
 }
 
 export function getPayDays(expenses: Expense[]) {
@@ -60,8 +59,8 @@ export function getPayDays(expenses: Expense[]) {
 }
 
 export function getPayDayIntervals(payDays: Expense[]) {
-    return [...payDays?.filter(e => e.amount > 1000 && (e.date?.split("-")[2] > 25 || e.date?.split("-")[2] < 5)).map((expense, i) => {
-        const nextExpense = payDays?.filter(e => e.amount > 1000 && (e.date?.split("-")[2] > 25 || e.date?.split("-")[2] < 5))?.[i + 1]
+    return [...payDays?.filter(e => isPayDay(e)).map((expense, i) => {
+        const nextExpense = payDays?.filter(e => isPayDay(e))?.[i + 1]
         let endDate = nextExpense?.date ? dayjs(nextExpense?.date).subtract(1, "day").format("YYYY-MM-DD") : undefined
         return {
             startDate: expense.date,

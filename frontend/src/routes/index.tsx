@@ -63,7 +63,18 @@ function Main({
     setSelectedStartDateIndex(prev => prev - 1)
   }
 
-
+  
+  function getMainMonth(selectedMonth){
+    let startDate=dayjs(selectedMonth?.startDate)
+    let endDate=dayjs(selectedMonth?.endDate)
+    if(startDate.month()==endDate.month() || startDate.month()+1!=endDate.month()) return startDate
+    let daysOfFirstMonth=startDate.daysInMonth()-Number().valueOf(startDate.format("DD"))
+    let daysOfLastMonth=Number().valueOf(endDate.format("DD"))
+    if(daysOfFirstMonth>daysOfLastMonth)
+      return startDate
+    else
+      return endDate
+  }
 
   const selectedMonthData = useMemo(() => {
 
@@ -79,7 +90,7 @@ function Main({
       profit,
       expense,
       expenses: expensesFromLast,
-      title: dayjs(selectedMonth?.endDate).format("MMM. YYYY")
+      title: getMainMonth(selectedMonth).format("MMM. YYYY")
     }
   }, [allExpenses, selectedStartDate])
 
