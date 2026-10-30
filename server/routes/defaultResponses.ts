@@ -8,6 +8,10 @@ export function badRequest(c:any,e:any){
     return c.text(`400 Bad request: ${e.argument}`,400);
 }
 
+export function conflict(c:any,e:any){
+    return c.text(`409 Conflict: ${e.argument}`,400);
+}
+
 export function forbidden(c:any,e:any){
     return c.text(`403 Forbidden: ${e.argument}`,403);
 }

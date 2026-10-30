@@ -1,8 +1,7 @@
 import { relations } from 'drizzle-orm';
-import { date, integer, numeric, pgEnum, pgTable, serial, text, uniqueIndex, type AnyPgColumn } from 'drizzle-orm/pg-core';
-import { users } from './users';
+import { boolean, date, integer, numeric, pgTable, serial, text, uniqueIndex, type AnyPgColumn } from 'drizzle-orm/pg-core';
 import { types } from './types';
-import { boolean } from 'drizzle-orm/gel-core';
+import { users } from './users';
 
 
 export const expenses = pgTable('expenses', {

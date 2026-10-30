@@ -26,7 +26,7 @@ function Login({
             localStorage.setItem("user", JSON.stringify(user))
             navigate({ to: "/" })
 
-        } catch (e) {
+        }catch (e:unknown) {
 
             setFailed(true)
         }

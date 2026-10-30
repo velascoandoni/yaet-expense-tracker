@@ -10,4 +10,10 @@ export const schema = {
     expensesRelations,
     // other tables...
   };
-export const db = drizzle(process.env.POSTGRES_URL,{schema} );
+const databaseUrl = process.env.POSTGRES_URL;
+
+if (!databaseUrl) {
+  throw new Error('POSTGRES_URL environment variable is required');
+}
+
+export const db = drizzle(databaseUrl, { schema });

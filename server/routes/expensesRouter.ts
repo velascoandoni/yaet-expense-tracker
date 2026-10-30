@@ -1,10 +1,9 @@
-import { Hono } from "hono";
-import { addExpense, addExpenses, addExpensesSplitFrom, addMergingExpense, deleteExpense, editExpense, getExpense, getExpenses, getTypes, } from "../dataLayer/expensesORM";
-import { defaultHandler } from "./defaultHandlers";
-import { notImplemented } from "./defaultResponses";
 import { zValidator } from "@hono/zod-validator";
+import { Hono } from "hono";
 import { z } from "zod";
 import { insertExpenseSchema, insertMultipleExpenseSchema, queryExpensesSchema, updateExpenseSchema } from "../../types/expenses";
+import { addExpense, addExpenses, addExpensesSplitFrom, addMergingExpense, deleteExpense, editExpense, getExpense, getExpenses } from "../dataLayer/expensesORM";
+import { defaultHandler } from "./defaultHandlers";
 
 
 
@@ -21,7 +20,7 @@ export const expensesRouter = new Hono()
         zValidator("query", queryExpensesSchema),
         async c => {
             const query = c.req.valid("query");
-            return await defaultHandler(c, async (param: any, body: any) => getExpenses(query?.user_id, query))
+            return await defaultHandler(c, async (param: any, body: any) => getExpenses(query))
         })
     .post("/collection", zValidator("json", insertMultipleExpenseSchema), async c => {
         const validatedExpenses = await c.req.valid("json");
@@ -30,7 +29,7 @@ export const expensesRouter = new Hono()
         return await defaultHandler(c, (params: any, body: any) => addExpenses(validatedExpenses))
 
     })
-    .post("/split", zValidator("json", z.object({newExpenses:insertMultipleExpenseSchema,expenseToSplit:updateExpenseSchema.refine((val) => !val.split)})), async c => {
+    .post("/split", zValidator("json", z.object({newExpenses:insertMultipleExpenseSchema,expenseToSplit:updateExpenseSchema.refine((val) => !val.was_split)})), async c => {
         const validatedExpenses = await c.req.valid("json");
 
         // Handle multiple newExpenses

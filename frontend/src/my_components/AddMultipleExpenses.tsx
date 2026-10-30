@@ -1,6 +1,7 @@
 import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Input, InputRef, notification } from 'antd';
+import { Button, Input, notification } from 'antd';
+import type { InputRef } from 'antd';
 import { useReducer, useRef } from 'react';
 import { useCreateExpensesMutation } from '../redux/api/expensesApi';
 

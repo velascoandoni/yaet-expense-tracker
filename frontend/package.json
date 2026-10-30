@@ -7,7 +7,8 @@
     "dev": "bunx --bun vite",
     "build": "bunx --bun vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck":"tsc -b"
   },
   "dependencies": {
     "@ant-design/icons": "5.x",

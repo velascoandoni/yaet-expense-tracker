@@ -1,6 +1,7 @@
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from "drizzle-zod"
 import { expenses } from "../server/dataLayer/db/schema/expenses"
 import { z } from "zod"
+import type { getExpense } from "../server/dataLayer/expensesORM";
 
 // Get the base schema
 export const insertExpenseSchema = createInsertSchema(expenses)
@@ -16,17 +17,12 @@ export const insertExpenseSchema = createInsertSchema(expenses)
         path: ["amount"]
       });
     }
-    if (Number.isNaN(data.final_balance)) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Final balance cannot be NaN",
-        path: ["final_balance"]
-      });
-    }
   });
 
 export const selectExpenseSchema = createSelectSchema(expenses)
-export const updateExpenseSchema = createUpdateSchema(expenses)
+export const updateExpenseSchema = createUpdateSchema(expenses).extend({
+  expense_id:z.number()
+})
 
 export const insertMultipleExpenseSchema = z.array(insertExpenseSchema)
 
@@ -44,3 +40,7 @@ export const queryExpensesSchema=z.object({
 
 export type Expense= z.infer<typeof selectExpenseSchema>
 export type CreateExpense= z.infer<typeof insertExpenseSchema>
+export type UpdateExpense= z.infer<typeof updateExpenseSchema>
+
+export type ExpenseWithRelations =
+  NonNullable<Awaited<ReturnType<typeof getExpense>>>

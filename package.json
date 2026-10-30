@@ -1,5 +1,5 @@
 {
-  "name": "gusessle",
+  "name": "yaet",
   "module": "server/index.ts",
   "type": "module",
   "scripts": {
@@ -7,7 +7,8 @@
     "dev": "bun --watch server/index.ts",
     "generate": "bun drizzle-kit generate",
     "migrate": "bun drizzle-kit migrate",
-    "frontend": "cd frontend && bunx --bun vite"
+    "frontend": "cd frontend && bunx --bun vite",
+    "typecheck":"tsc -b"
   },
   "devDependencies": {
     "@types/bun": "latest",
