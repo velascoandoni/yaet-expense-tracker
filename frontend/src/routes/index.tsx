@@ -136,10 +136,7 @@ function Main({
       </div>
 
       <div style={{ height: "100%",flexGrow:1 }}>
-        <CustomCard title={<>
-          GASTOS
-
-        </>} bodyStyle={{ height: "100%", overflow: "hidden" }} noPadding style={{ height: "100%", flexGrow: 10, alignContent: "space-between", display: "flex", flexDirection: "column", padding: "0px" }}>
+        <CustomCard title={"GASTOS"} bodyStyle={{ height: "100%", overflow: "hidden" }} noPadding style={{ height: "100%", flexGrow: 10, alignContent: "space-between", display: "flex", flexDirection: "column", padding: "0px" }}>
           <div style={{ position: "absolute", top: 10, right: 10 }}>
             <AddMultipleExpenses />
 

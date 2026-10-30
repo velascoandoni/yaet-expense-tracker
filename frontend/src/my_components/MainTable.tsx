@@ -125,7 +125,7 @@ export function MainTable({
       key: "expense_id",
       dataIndex: "expense_id",
       title: "ID",
-      width: "100px",
+      width: "1",
       render: (expense_id, { raw, active, split_from, merged_to, was_merged, was_split }) => {
         return <>
           {expense_id}
@@ -145,7 +145,6 @@ export function MainTable({
       key: "name",
       dataIndex: "name",
       title: "GASTO",
-      width: "200px",
       ...getColumnSearchProps("name"),
 
     },
@@ -153,7 +152,7 @@ export function MainTable({
       key: "amount",
       dataIndex: "amount",
       title: "Amount",
-      width: "100px",
+      width: "1",
       render: (_, { amount, expense_id }) => expense_id < 0 ? <></> : <Tag color={amount > 0 ? "green" : "red"} key={amount}>
         {amount}€
       </Tag>,
@@ -164,22 +163,22 @@ export function MainTable({
       key: "date",
       dataIndex: "date",
       title: "Date",
-      width: "100px",
-      render:(v)=>dayjs(v).format("MMM DD")
+      width: "1",
+      render:(v)=>dayjs(v).format("MMM DD YY")
 
     },
     !reduced && showBalance && {
       key: "final_balance",
       dataIndex: "final_balance",
       title: "Final balance",
-      width: "100px",
+      width: "1",
 
     },
     !reduced && {
       key: "type_id",
       dataIndex: "type_id",
       title: "TIpo",
-      width: "200px",
+      width: "1",
       render: (v, record) => {
         if (!isExpense(record)) return <></>
         let type = types?.find(t => t.type_id === v)

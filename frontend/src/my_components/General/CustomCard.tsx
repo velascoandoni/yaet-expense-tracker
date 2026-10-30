@@ -22,7 +22,7 @@ export default function CustomCard({
 }:CustomCardProps){
     
     return <Card className={classNameMerger("customCard",className,noPadding?"noPadding":"")} style={style} styles={{body:{...bodyStyle},}} >
-        {title?<Title style={{fontSize:fontSize,padding:noPadding?"20px 0px 20px":undefined,margin:"0 0 10px",color:"white"}}>{title}</Title>:""}
+        {title?<Title style={{fontSize:fontSize,padding:noPadding?"20px":undefined,margin:"0 0 10px",color:"white"}}>{title}</Title>:""}
         {children}
     </Card>
 }
